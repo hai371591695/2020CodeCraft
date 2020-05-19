@@ -45,7 +45,9 @@ GVec forGIndex[MaxNodeNum];           //正向图索引
 GVec revGIndex[MaxNodeNum]; 
 ```
 (1)通过forG记录图，forGIndex[i]记录节点i在forG的位置（起始，结束）
+
 (2)构图时通过输入时统计的各个节点输出度，先计算出所有节点邻居在forG的位置范围，构图时得到一条边从对应位置放入
+
 (3)采用4个线程 分别分正向反向奇数偶数构造同一个forG和revG
 
 ## 搜索
@@ -61,9 +63,9 @@ GVec revGIndex[MaxNodeNum];
 
 trick:搜索7环时，先判断路径标志，再进行金额，路径是否重复等判断会提升很多，因为路径标志命中率不高，可以避免后续操作。
 
-trick:bfs比dfs搜索更快，线下加速0.6s左右，线上加速0.2s左右，应该是dfs搜索大量节点会使上层节点的邻居被替换出cache。
+trick:bfs比dfs搜索更快，线下加速0.6s左右，线上加速0.2s左右，dfs搜索大量节点会使上层节点的邻居被替换出cache。
 
-trick:尽可能压缩常用的数据，类似我们的标志位，从int到char，forGIndex从指针变为int，都提升很大，线上提升应该超过0.2
+trick:尽可能压缩常用的数据，类似我们的标志位，从int到char，forGIndex从指针变为int，都提升很大，线上提升应该超过0.2。
 
 
 ## 多线程划分
