@@ -39,8 +39,9 @@ struct GVec{
 };
 
 
-pair<uint32_t, uint32_t> forG[2000000];     //正向图
+pair<uint32_t, uint32_t> forG[2000000];     //正向图  
 pair<uint32_t, uint32_t> revG[2000000];     //反向图
+//例如转账记录u->v 金额为m,  forG中pair的first为v，second为m，u不需要存储，由出入度确定每个u所管理的forG的范围，通过forGIndex[u]来查询
 GVec forGIndex[MaxNodeNum];           //正向图索引
 GVec revGIndex[MaxNodeNum]; 
 ```
